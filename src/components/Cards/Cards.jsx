@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Cards =() =>{
-
+const Cards =(props) =>{
+console.log(props)
     return(
-        <h1>Cards</h1>
+    <h1>{props.data.death}</h1>
     )
 }
 

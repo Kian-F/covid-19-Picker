@@ -7,4 +7,4 @@ const Chart =() =>{
     )
 }
 
-export default Charts
+export default Chart
