@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Cards, Chart, CountryPicker} from './components'
 import styles from './App.modules.css';
-import {fetchData} from './api'
+import {fetchData, fetchDailyData} from './api'
 
 
 class App extends React.Component{
@@ -19,7 +19,7 @@ class App extends React.Component{
         this.setState({data: fetchedData})
     }
 
-   
+  
     
 
     render(){
