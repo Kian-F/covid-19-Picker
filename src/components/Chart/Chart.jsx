@@ -16,7 +16,7 @@ useEffect(() => {
         // const dailyData = await fetchDailyData();
         setDailyData(await fetchDailyData())
     }
-    console.log(dailyData);
+    //console.log(dailyData);
     //call the function
     fetchAPI();
 });
