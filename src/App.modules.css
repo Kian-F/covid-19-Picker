@@ -7,3 +7,18 @@ body{
     justify-content: center;
     flex-direction: column;
 }
+.MuiFormControl-root{
+    padding-left: 500px;
+    padding-bottom: 35px;
+}
+
+
+@media only screen and (max-width: 770px) {
+    .container {
+      margin: 0 10%;
+    }
+  
+    .image {
+      width: 100%;
+    }
+  }
