@@ -6,7 +6,7 @@ import { fetchCountries } from '../../api';
 import styles from './CountryPicker.module.css';
 
 const CountryPicker = ({ handleCountryChange }) => {
-  const [fetchedCountries, setFetchedCountries] = useState([]);
+  const [fetchedCountries, setFetchedCountries] = useState(['US']);
   useEffect(() => {
     const fetchAPI = async () => {
       setFetchedCountries(await fetchCountries());
@@ -21,7 +21,7 @@ const CountryPicker = ({ handleCountryChange }) => {
       {/* on change set the as the argument of the function */}
       {/* call the fucntion and pass the event as argument, the data is inside the e which is the chossen country */}
       <NativeSelect
-        defaultValue={(e)=> handleCountryChange('US')}
+        defaultValue={fetchCountries}
         onChange={(e) => handleCountryChange(e.target.value)}
       >
         {/* <option value="US">USA</option> */}
