@@ -10,13 +10,14 @@ const Chart =({ data: { confirmed, recovered, deaths }, country })  =>{
     console.log(confirmed);
     console.log(country);
 
-const [dailyData, setDailyData] = useState([]);
+const [dailyData, setDailyData] = useState({});
 
 useEffect(() => {
     const fetchAPI = async () =>{
 
         // const dailyData = await fetchDailyData();
-        setDailyData(await fetchDailyData())
+        const initialDailyData = await fetchDailyData();
+        setDailyData(initialDailyData)
     }
     //console.log(dailyData);
     //call the function
@@ -24,32 +25,33 @@ useEffect(() => {
 }, []);
 
 const lineChart = (
-    //if dailyData length is not 0, else return null
- dailyData.length !== 0 ?( <Line
- //we need to make the data dynamic but it is also an object
-data={{
-
-    //loop trough the dailyData, this is a map and return all the dates
-    labels: dailyData.map(({date}) => date),
-    //an array of objects
-    datasets: [{
-        data: dailyData.map(({confirmed}) => confirmed),
-        label: 'Infected',
-        borderColor: '#3333ff',
-        fill:true, //fill the space below the chart
-    },{
-        data: dailyData.map(({deaths}) => deaths),
-        label: 'Deaths',
-        borderColor: 'black',
-        backgroundColor: 'rgba(255, 0, 0, 0.5)',
-        fill: true,
-
-    }],
-}}
-/>) : null
-
-
-);
+    dailyData[0] ? (
+      <Line
+        data={{
+          labels: dailyData.map(({ date }) => new Date(date).toLocaleDateString()),
+          datasets: [{
+            data: dailyData.map((data) => data.confirmed),
+            label: 'Infected',
+            borderColor: '#3333ff',
+            fill: true,
+          }, {
+            data: dailyData.map((data) => data.deaths),
+            label: 'Deaths',
+            borderColor: 'red',
+            backgroundColor: 'rgba(255, 0, 0, 0.5)',
+            fill: true,
+          },  {
+            data: dailyData.map((data) => data.recovered),
+            label: 'Recovered',
+            borderColor: 'green',
+            backgroundColor: 'rgba(0, 255, 0, 0.5)',
+            fill: true,
+          },
+          ],
+        }}
+      />
+    ) : null
+  );
 
 
 const doughnutChart = (
@@ -67,6 +69,10 @@ const doughnutChart = (
         }]
 
     }}
+    options={{
+        legend: { display: false },
+        title: { display: true, text: `Current state in ${country}` },
+      }}
     />
     ): null
 )

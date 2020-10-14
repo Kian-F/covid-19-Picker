@@ -1,8 +1,8 @@
 import React from 'react';
 
-import {Cards, Chart, CountryPicker} from './components'
+import {Cards, Chart, CountryPicker} from './components';
 import styles from './App.modules.css';
-import {fetchData, fetchDailyData} from './api'
+import {fetchData} from './api';
 
 
 class App extends React.Component{
@@ -16,20 +16,20 @@ class App extends React.Component{
     }
     
     async componentDidMount(){
-        const fetchedData = await fetchData();
-        this.setState({data: fetchedData})
+        const data = await fetchData();
+        this.setState({data})
     }
 
   handleCountryChange = async (country) => {
 
       //fetch data
-      const fetchedData = await fetchData(country);
-      console.log(fetchedData);
+      const data = await fetchData(country);
+      console.log(data);
       
     //console.log(country);
     
       //set State
-      this.setState({data: fetchedData, country: country})
+      this.setState({data, country: country})
   }
     
 
@@ -38,7 +38,7 @@ class App extends React.Component{
         return(
            
             <div className={styles.container}>
-                <Cards data={this.state.data}/>
+                <Cards data={data}/>
                 {/* pass the method as a prop to  CountryPicker */}
                 <CountryPicker handleCountryChange={this.handleCountryChange}/>
                 <Chart data={data} country={country} />
