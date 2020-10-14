@@ -25,7 +25,7 @@ useEffect(() => {
 
 const lineChart = (
     //if dailyData length is not 0, else return null
- dailyData.length != 0 ?( <Line
+ dailyData.length !== 0 ?( <Line
  //we need to make the data dynamic but it is also an object
 data={{
 
