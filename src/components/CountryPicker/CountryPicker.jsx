@@ -21,10 +21,10 @@ const CountryPicker = ({ handleCountryChange }) => {
       {/* on change set the as the argument of the function */}
       {/* call the fucntion and pass the event as argument, the data is inside the e which is the chossen country */}
       <NativeSelect
-        defaultValue=""
+        defaultValue={(e)=> handleCountryChange('US')}
         onChange={(e) => handleCountryChange(e.target.value)}
       >
-        <option value="global">Global</option>
+        {/* <option value="US">USA</option> */}
         {fetchedCountries.map((country, i) => (
           <option key={i} value={country}>
             {country}
